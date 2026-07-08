@@ -1,0 +1,20 @@
+name: Ping Vercel Crons
+
+on:
+  schedule:
+    # Run every 30 minutes
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  ping-endpoints:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping BCV Cron
+        run: curl -s https://tucambio-sigma.vercel.app/api/cron-bcv
+        
+      - name: Ping Morning Cron
+        run: curl -s https://tucambio-sigma.vercel.app/api/cron-morning
+        
+      - name: Ping Futbol Cron
+        run: curl -s https://tucambio-sigma.vercel.app/api/cron-futbol
